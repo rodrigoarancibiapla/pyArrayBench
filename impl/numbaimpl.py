@@ -1,12 +1,11 @@
 from interfaces.IArray import IArray
 from numba import jit
 import math
-from impl.native_impl_function import get_avg_len_rows
 
 class arrayimpl(IArray):  
     @staticmethod
     @jit(nopython=True)   
-    def call_native_get_avg_len_rows(myArray):         
+    def numba_get_avg_len_rows(myArray):         
         suma = 0        
         for lineN in range(len(myArray)):
             s = 0
@@ -16,5 +15,5 @@ class arrayimpl(IArray):
         return int((suma / len(myArray)))       
         
     def get_avg_len_rows(self, myArray):        
-        return self.call_native_get_avg_len_rows(myArray)
+        return self.numba_get_avg_len_rows(myArray)
     
